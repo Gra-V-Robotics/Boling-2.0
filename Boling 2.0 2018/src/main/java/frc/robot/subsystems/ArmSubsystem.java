@@ -6,32 +6,38 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class GripperSubsystem extends Subsystem {
+public class ArmSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Solenoid gripperActuator;
+  TalonSRX armMotor1, armMotor2, armMotor3;
   
-  public GripperSubsystem(){
-    gripperActuator = new Solenoid(RobotMap.gripperSub);  
+  public ArmSubsystem(){
+    armMotor1 = new TalonSRX(RobotMap.armMotor1);
+    armMotor2 = new TalonSRX(RobotMap.armMotor2);
+    armMotor3 = new TalonSRX(RobotMap.armMotor3);  
   }
 
-  public void grip(boolean isPressed){
-    gripperActuator.set(isPressed);
-    
-  }
+  public void armControl(double power){
+    armMotor1.set(ControlMode.PercenOutput, power);
+    armMotor2.set(ControlMode.Follower, armMotor2);
+    armMotor3.set(ControlMode.Follower, armMotor3);      
+  };
+  
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-  }
-
+  }  
 }

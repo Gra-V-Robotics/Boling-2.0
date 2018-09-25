@@ -18,7 +18,7 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class Arm extends PIDSubsystem {
+public class ArmSubsystemPID extends PIDSubsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -29,7 +29,7 @@ public class Arm extends PIDSubsystem {
   public static double kI = 0.005;
   public static double kD = 0.005;
   
-  public Arm(){
+  public ArmSubsystemPID(){
     super("Arm", kP, kI, kD);
     getPIDController().setPID(kP, kI, kD);
     setAbsoluteTolerance(tolerance);

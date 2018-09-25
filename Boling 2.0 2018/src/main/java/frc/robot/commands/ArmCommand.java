@@ -12,40 +12,38 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.GripperSubsystem;
 
-public class GripperCommand extends Command {
+public class ArmCommand extends Command {
   public GripperCommand() {   
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.gripperSub);
+    requires(Robot.armSub);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(60);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {  
-    Robot.gripper.grip(true);
+    Robot.armSub.armControl(OI.manipulatorController.getRawAxis(1));  
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.gripper.grip(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.gripper.grip(false);
   }
 }

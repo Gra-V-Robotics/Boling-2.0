@@ -15,6 +15,7 @@ public class DriveTrainCommand extends Command {
   public DriveTrainCommand() {   
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.driveTrainSub);
   }
 
   // Called just before this Command runs the first time

@@ -12,7 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.DriveTrainCommand;
 import frc.robot.commands.GripperCommand;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.GripperSubsystem;
 
@@ -26,10 +28,14 @@ import frc.robot.subsystems.GripperSubsystem;
  */
 public class Robot extends TimedRobot {
   public static DriveTrainSubsystem driveTrainSub = new DriveTrainSubsystem();
-  public static GripperSubsystem gripper = new GripperSubsystem();
+  public static GripperSubsystem gripperSub = new GripperSubsystem();
+  public static ArmSubsystem armSub = new ArmSubsystem();
   public static OI m_oi;
+  public static DriveTrainCommand driveTrainCommand = new DriveTrainCommand();
+  public static ArmCommand armCommand = new ArmCommand();
+  public static GripperCommand gripperCommand = new GripperCommand();
 
-  Command m_autonomousCommand;
+  
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -92,7 +98,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+     
     }
   }
 
@@ -111,7 +117,7 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    
     }
   }
 
@@ -120,6 +126,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    driveTrainCommand.start();
+    armCommand.start();
+    gripperCommand.start();
     Scheduler.getInstance().run();
   }
 

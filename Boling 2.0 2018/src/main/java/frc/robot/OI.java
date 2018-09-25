@@ -44,4 +44,9 @@ public class OI {
 
   public static Joystick driverController = new Joystick(RobotMap.driverController);
   public static Joystick manipulatorController = new Joystick(RobotMap.manipulatorController);
+  public static JoystickButton gripperButton = new JoystickButton(manipulatorController, manipulatorController.getRawButton(1));
+
+  public OI() {
+    gripperButton.toggleWhenPressed(new GripperCommand());
+  }
 }
