@@ -11,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.OI;
 import frc.robot.RobotMap;
 
 /**
@@ -21,7 +20,7 @@ public class DriveTrainSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX rightFrontMotor, rightBackMotor, leftFrontMotor, leftBackMotor;  
-  public void DriveTrainSubsystem(){
+  public DriveTrainSubsystem(){
     rightFrontMotor = new TalonSRX(RobotMap.rightFrontMotor);
     rightBackMotor = new TalonSRX(RobotMap.rightBackMotor);
     leftBackMotor = new TalonSRX(RobotMap.leftBackMotor);
